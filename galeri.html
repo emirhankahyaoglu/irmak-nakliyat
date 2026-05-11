@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Irmak Nakliyat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #005f99 0%, #003d66 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: #ffa500;
+        }
+
+        .contact-btn {
+            background: #ff9800;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0,95,153,0.9), rgba(0,61,102,0.9)), url('images/arac.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay p {
+            color: white;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,0,0,0.7);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0,95,153,0.8);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ff9800;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #25D366;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #25D366;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .floating-phone {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ff9800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .floating-phone:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #003d66;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            nav.active {
+                max-height: 500px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .floating-phone {
+                bottom: 20px;
+                left: 20px;
+                right: auto;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Irmak Nakliyat Logo">
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="hizmetler.html">Hizmetler</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="iletisim.html" class="contact-btn">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Galeri</h1>
+        <p>Çalışmalarımızdan kareler</p>
+    </div>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_07ca6c93.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Profesyonel Paketleme</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_118e8c3a.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Güvenli Taşıma</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_8fe0d443.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Eşya Koruması</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_b93c15a6.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Mobilya Taşıma</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_dfb55ab5.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Evden Eve Nakliyat</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_e952865c.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Profesyonel Ekip</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.28_04307b43.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Araç Yükleme</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.28_2791b7f9.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Organize Taşıma</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.28_71be1d16.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Güvenli Paketleme</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.28_9a4b0ec9.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Eşya Yerleştirme</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(10)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.28_dd4d57ab.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Nakliyat Hizmeti</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(11)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.29_20d00356.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Profesyonel Hizmet</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(12)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.29_46a40e13.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Taşıma İşlemi</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(13)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.29_a105e02a.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Ekip Çalışması</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(14)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.29_bae9ba14.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Güvenli Nakliyat</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(15)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_3f2efd4c.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Hızlı Taşıma</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(16)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_8e8582dc.jpg" alt="Asansörlü Taşımacılık">
+                    <div class="gallery-overlay">
+                        <p>Asansörlü Nakliyat</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(17)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_8f90bede.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Yükleme İşlemi</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(18)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_ad92eb55.jpg" alt="Nakliyat Çalışması">
+                    <div class="gallery-overlay">
+                        <p>Taşıma Süreci</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(19)">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_bb2c8dd4.jpg" alt="Asansörlü Taşımacılık">
+                    <div class="gallery-overlay">
+                        <p>Asansör Ekibi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <div class="lightbox-prev" onclick="changeImage(-1, event)">&#10094;</div>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Galeri Görseli">
+        </div>
+        <div class="lightbox-next" onclick="changeImage(1, event)">&#10095;</div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Irmak Nakliyat</h3>
+                <p>10 yılı aşkın tecrübemizle güvenli ve hızlı nakliyat hizmetleri sunuyoruz.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/rmak_nakliyat/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tr-tr.facebook.com/izzet.irmak.96" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/905323055337" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="hizmetler.html">Hizmetler</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="iletisim.html">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 0532 305 53 37</li>
+                    <li><i class="fas fa-phone"></i> 0544 611 42 67</li>
+                    <li><i class="fas fa-envelope"></i> info@irmaknakliyat.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ankara, Türkiye</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Irmak Nakliyat. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/905323055337" class="floating-whatsapp" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:05323055337" class="floating-phone" title="Hemen Ara">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+
+        const images = [
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_07ca6c93.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_118e8c3a.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_8fe0d443.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_b93c15a6.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_dfb55ab5.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.27_e952865c.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.28_04307b43.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.28_2791b7f9.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.28_71be1d16.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.28_9a4b0ec9.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.28_dd4d57ab.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.29_20d00356.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.29_46a40e13.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.29_a105e02a.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.29_bae9ba14.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.30_3f2efd4c.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.30_8e8582dc.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.30_8f90bede.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.30_ad92eb55.jpg',
+            'images/WhatsApp Görsel 2025-04-19 saat 14.32.30_bb2c8dd4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = images[currentIndex];
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        }
+
+        function changeImage(direction, event) {
+            event.stopPropagation();
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            document.getElementById('lightbox-img').src = images[currentIndex];
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (event.key === 'ArrowLeft') changeImage(-1, event);
+                if (event.key === 'ArrowRight') changeImage(1, event);
+                if (event.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

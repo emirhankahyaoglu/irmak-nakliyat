@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetlerimiz - Irmak Nakliyat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #005f99 0%, #003d66 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            color: #ffa500;
+        }
+
+        .contact-btn {
+            background: #ff9800;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0,95,153,0.9), rgba(0,61,102,0.9)), url('images/hizmet.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .services-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+            padding: 40px;
+            background: #f8f8f8;
+            border-radius: 20px;
+        }
+
+        .service-detail:nth-child(even) {
+            background: white;
+        }
+
+        .service-detail:nth-child(even) .service-image {
+            order: 2;
+        }
+
+        .service-content h2 {
+            font-size: 32px;
+            color: #005f99;
+            margin-bottom: 20px;
+        }
+
+        .service-content h2 i {
+            margin-right: 15px;
+            color: #ff9800;
+        }
+
+        .service-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .service-features li {
+            padding: 10px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .service-features li i {
+            color: #25D366;
+            margin-right: 10px;
+        }
+
+        .service-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #005f99, #003d66);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn-primary {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1ebc59;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #005f99;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ff9800;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #25D366;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #25D366;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .floating-phone {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ff9800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .floating-phone:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #003d66;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            nav.active {
+                max-height: 500px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .service-detail {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .service-detail:nth-child(even) .service-image {
+                order: 0;
+            }
+
+            .service-content h2 {
+                font-size: 24px;
+            }
+
+            .floating-phone {
+                bottom: 20px;
+                left: 20px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Irmak Nakliyat Logo">
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="hizmetler.html">Hizmetler</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="iletisim.html" class="contact-btn">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Hizmetlerimiz</h1>
+        <p>Profesyonel nakliyat çözümleri</p>
+    </div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-home"></i> Evden Eve Nakliyat</h2>
+                    <p>Evden eve nakliyat hizmetimizle taşınma sürecinizi kolaylaştırıyoruz. Profesyonel ekibimiz, eşyalarınızı özenle paketler, güvenli bir şekilde taşır ve yeni evinizde istediğiniz yere yerleştirir.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Profesyonel paketleme malzemeleri</li>
+                        <li><i class="fas fa-check-circle"></i> Eşya demontaj ve montaj hizmeti</li>
+                        <li><i class="fas fa-check-circle"></i> Sigortalı taşımacılık</li>
+                        <li><i class="fas fa-check-circle"></i> Zamanında teslimat garantisi</li>
+                        <li><i class="fas fa-check-circle"></i> Deneyimli taşıma ekibi</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_07ca6c93.jpg" alt="Evden Eve Nakliyat">
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-building"></i> Ofis Taşımacılığı</h2>
+                    <p>Ofis taşıma işlemlerinizi minimum aksama ile gerçekleştiriyoruz. İş yerinizin tüm ekipmanlarını, mobilyalarını ve dokümanlarını güvenle yeni adresinize taşıyoruz.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Hızlı ve organize taşıma</li>
+                        <li><i class="fas fa-check-circle"></i> Hassas ekipman taşımacılığı</li>
+                        <li><i class="fas fa-check-circle"></i> Dosya ve arşiv taşıma</li>
+                        <li><i class="fas fa-check-circle"></i> Hafta sonu taşıma seçeneği</li>
+                        <li><i class="fas fa-check-circle"></i> Kurulum ve yerleştirme hizmeti</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_8fe0d443.jpg" alt="Ofis Taşımacılığı">
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-elevator"></i> Asansörlü Taşımacılık</h2>
+                    <p>Yüksek katlara taşınma işlemlerinde asansörlü nakliyat sistemimiz ile eşyalarınızı güvenli ve hızlı bir şekilde taşıyoruz. Tecrübeli asansör ekibimiz her türlü zorlu taşıma işlemini kolaylıkla gerçekleştirir.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Modern asansör ekipmanları</li>
+                        <li><i class="fas fa-check-circle"></i> Yüksek katlara güvenli taşıma</li>
+                        <li><i class="fas fa-check-circle"></i> Zaman tasarrufu</li>
+                        <li><i class="fas fa-check-circle"></i> Uzman asansör operatörleri</li>
+                        <li><i class="fas fa-check-circle"></i> Ağır eşya taşıma imkanı</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_bb2c8dd4.jpg" alt="Asansörlü Taşımacılık">
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-truck"></i> Şehirlerarası Nakliyat</h2>
+                    <p>Türkiye'nin her yerine şehirlerarası nakliyat hizmeti sunuyoruz. Geniş araç filomuz ve deneyimli sürücülerimizle eşyalarınızı güvenle hedefe ulaştırıyoruz.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> 81 ile hizmet ağı</li>
+                        <li><i class="fas fa-check-circle"></i> Kapıdan kapıya teslimat</li>
+                        <li><i class="fas fa-check-circle"></i> Takip sistemi</li>
+                        <li><i class="fas fa-check-circle"></i> Hızlı ve güvenli taşıma</li>
+                        <li><i class="fas fa-check-circle"></i> Uygun fiyat garantisi</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/kamyon.jpg" alt="Şehirlerarası Nakliyat">
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-box"></i> Paketleme Hizmeti</h2>
+                    <p>Eşyalarınızın güvenliği için profesyonel paketleme hizmeti sunuyoruz. Kaliteli paketleme malzemeleri ile her türlü eşyanızı hasara karşı koruyoruz.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Profesyonel paketleme malzemeleri</li>
+                        <li><i class="fas fa-check-circle"></i> Kırılabilir eşya paketleme</li>
+                        <li><i class="fas fa-check-circle"></i> Mobilya koruma</li>
+                        <li><i class="fas fa-check-circle"></i> Etiketleme sistemi</li>
+                        <li><i class="fas fa-check-circle"></i> Özel paketleme çözümleri</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.27_b93c15a6.jpg" alt="Paketleme Hizmeti">
+                </div>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-content">
+                    <h2><i class="fas fa-warehouse"></i> Depolama Hizmeti</h2>
+                    <p>Güvenli ve modern depolama alanlarımızda eşyalarınızı istediğiniz süre muhafaza ediyoruz. Kısa ve uzun dönem depolama seçeneklerimiz mevcuttur.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Güvenli depolama alanları</li>
+                        <li><i class="fas fa-check-circle"></i> 7/24 güvenlik</li>
+                        <li><i class="fas fa-check-circle"></i> Klimalı depolar</li>
+                        <li><i class="fas fa-check-circle"></i> Esnek depolama süreleri</li>
+                        <li><i class="fas fa-check-circle"></i> Sigortalı muhafaza</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="images/WhatsApp Görsel 2025-04-19 saat 14.32.30_8e8582dc.jpg" alt="Depolama Hizmeti">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ücretsiz Fiyat Teklifi Alın</h2>
+            <p>Hizmetlerimiz hakkında detaylı bilgi almak ve ücretsiz fiyat teklifi için bizimle iletişime geçin</p>
+            <a href="https://wa.me/905323055337" class="btn btn-primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
+            </a>
+            <a href="iletisim.html" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> İletişim Formu
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Irmak Nakliyat</h3>
+                <p>10 yılı aşkın tecrübemizle güvenli ve hızlı nakliyat hizmetleri sunuyoruz.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/rmak_nakliyat/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tr-tr.facebook.com/izzet.irmak.96" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/905323055337" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="hizmetler.html">Hizmetler</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="iletisim.html">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 0532 305 53 37</li>
+                    <li><i class="fas fa-phone"></i> 0544 611 42 67</li>
+                    <li><i class="fas fa-envelope"></i> info@irmaknakliyat.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ankara, Türkiye</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Irmak Nakliyat. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/905323055337" class="floating-whatsapp" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:05323055337" class="floating-phone" title="Hemen Ara">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
