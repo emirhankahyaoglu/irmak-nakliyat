@@ -17,11 +17,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f8f8f8;
             color: #333;
             line-height: 1.6;
         }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         header {
             background: linear-gradient(135deg, #005f99 0%, #003d66 100%);
@@ -46,12 +48,25 @@
             max-width: 180px;
             height: auto;
         }
+        
+        .logo a {
+            display: block;
+            line-height: 0;
+        }
 
         nav ul {
             list-style: none;
             display: flex;
             gap: 30px;
             align-items: center;
+        }
+        
+        .nav-header {
+            display: none;
+        }
+        
+        .nav-footer {
+            display: none;
         }
 
         nav ul li a {
@@ -78,6 +93,7 @@
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
+            z-index: 1002;
         }
 
         .menu-toggle span {
@@ -85,6 +101,37 @@
             height: 3px;
             background: white;
             transition: 0.3s;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
         }
 
         .page-header {
@@ -119,7 +166,7 @@
 
         .contact-info {
             background: #f8f8f8;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
         }
 
@@ -213,7 +260,7 @@
 
         .contact-form {
             background: #f8f8f8;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
         }
 
@@ -472,24 +519,82 @@
             }
 
             nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #003d66;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: linear-gradient(180deg, #005f99 0%, #003d66 100%);
+                transition: right 0.4s ease;
+                z-index: 1001;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
             }
 
             nav.active {
-                max-height: 500px;
+                right: 0;
             }
 
             nav ul {
                 flex-direction: column;
+                padding: 0;
+                gap: 0;
+                align-items: stretch;
+                margin: 0;
+            }
+            
+            .nav-header {
+                display: block;
+                color: white;
+                font-size: 16px;
+                font-weight: 500;
+                padding: 20px 20px 15px;
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+            
+            .nav-footer {
+                display: block;
                 padding: 20px;
-                gap: 15px;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                margin-top: auto;
+                text-align: center;
+            }
+            
+            .nav-footer img {
+                max-width: 200px;
+                width: 100%;
+                height: auto;
+            }
+            
+            nav ul li {
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav ul li:has(a.contact-btn) {
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+            
+            nav ul li a.contact-btn {
+                margin: 15px 20px;
+                text-align: center;
+                border-radius: 8px;
+                padding: 10px 20px !important;
+                font-size: 15px !important;
+                display: inline-block !important;
+                width: calc(100% - 60px) !important;
+                max-width: 220px !important;
+                box-sizing: border-box !important;
             }
 
             .page-header h1 {
@@ -501,8 +606,24 @@
                 gap: 30px;
             }
 
+            .contact-info,
+            .contact-form {
+                padding: 20px;
+            }
+
+            .info-item {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
             .quick-contact {
                 flex-direction: column;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px;
             }
 
             .map-container iframe {
@@ -521,7 +642,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="images/logo.png" alt="Irmak Nakliyat Logo">
+                <a href="index.html"><img src="images/logo.png" alt="Irmak Nakliyat Logo"></a>
             </div>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
@@ -529,6 +650,7 @@
                 <span></span>
             </div>
             <nav id="mainNav">
+                <div class="nav-header">MENÜ</div>
                 <ul>
                     <li><a href="index.html">Ana Sayfa</a></li>
                     <li><a href="hakkimizda.html">Hakkımızda</a></li>
@@ -536,6 +658,9 @@
                     <li><a href="galeri.html">Galeri</a></li>
                     <li><a href="iletisim.html" class="contact-btn">İletişim</a></li>
                 </ul>
+                <div class="nav-footer">
+                    <img src="images/logo.png" alt="Irmak Nakliyat">
+                </div>
             </nav>
         </div>
     </header>
@@ -678,7 +803,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Irmak Nakliyat</h3>
-                <p>10 yılı aşkın tecrübemizle güvenli ve hızlı nakliyat hizmetleri sunuyoruz.</p>
+                <p>30 yılı aşkın tecrübemizle güvenli ve hızlı nakliyat hizmetleri sunuyoruz.</p>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/rmak_nakliyat/" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://tr-tr.facebook.com/izzet.irmak.96" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -717,18 +842,19 @@
         <i class="fas fa-phone"></i>
     </a>
 
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
     <script>
         function toggleMenu() {
-            document.getElementById('mainNav').classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(event) {
             const nav = document.getElementById('mainNav');
             const toggle = document.querySelector('.menu-toggle');
-            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
-                nav.classList.remove('active');
-            }
-        });
+            const overlay = document.getElementById('menuOverlay');
+            
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        }
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
