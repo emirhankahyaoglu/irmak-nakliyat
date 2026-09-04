@@ -703,5 +703,85 @@
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         }
     </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                "serviceType": "Nakliyat ve Taşımacılık Hizmetleri",
+                "provider": {
+                    "@type": "LocalBusiness",
+                    "name": "Irmak Nakliyat",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Ankara",
+                        "addressCountry": "TR"
+                    }
+                },
+                "areaServed": {
+                    "@type": "City",
+                    "name": "Ankara"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Nakliyat Hizmetleri",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Evden Eve Nakliyat",
+                                "description": "Ankara ve Eryaman'da profesyonel evden eve nakliyat hizmeti"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Ofis Taşımacılığı",
+                                "description": "Kurumsal ofis ve iş yeri taşıma hizmeti"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Asansörlü Taşımacılık",
+                                "description": "Yüksek katlara özel asansörlü nakliyat sistemi"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Şehirlerarası Nakliyat",
+                                "description": "Türkiye geneli şehirlerarası taşımacılık"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Anasayfa",
+                        "item": "https://irmaknakliyat.com/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Hizmetlerimiz",
+                        "item": "https://irmaknakliyat.com/hizmetler"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </body>
 </html>

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Irmak Nakliyat Hakkında - 30 yılı aşkın tecrübe, 5000+ mutlu müşteri, Ankara ve Eryaman'da profesyonel nakliyat hizmetleri. Güvenilir ve kaliteli taşımacılık.">
-    <meta name="keywords" content="ırmak nakliyat hakkında, ankara nakliye şirketi, eryaman nakliyat firması, güvenilir nakliyat, profesyonel taşımacılık ankara">
+    <meta name="description" content="404 - Sayfa Bulunamadı | Irmak Nakliyat">
     <link rel="icon" type="image/png" href="images/logoicon.png">
-    <title>Hakkımızda - Irmak Nakliyat | 30 Yıllık Tecrübe</title>
+    <title>404 - Sayfa Bulunamadı | Irmak Nakliyat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
@@ -25,9 +24,10 @@
             color: #333;
             line-height: 1.6;
         }
-        
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+        /* Header & Navigation */
         header {
             background: linear-gradient(135deg, #005f99 0%, #003d66 100%);
             color: white;
@@ -51,7 +51,7 @@
             max-width: 180px;
             height: auto;
         }
-        
+
         .logo a {
             display: block;
             line-height: 0;
@@ -62,14 +62,6 @@
             display: flex;
             gap: 30px;
             align-items: center;
-        }
-        
-        .nav-header {
-            display: none;
-        }
-        
-        .nav-footer {
-            display: none;
         }
 
         nav ul li a {
@@ -91,6 +83,15 @@
             font-weight: bold;
         }
 
+        .nav-header {
+            display: none;
+        }
+
+        .nav-footer {
+            display: none;
+        }
+
+        /* Mobile Menu */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -105,19 +106,19 @@
             background: white;
             transition: 0.3s;
         }
-        
+
         .menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(7px, 7px);
         }
-        
+
         .menu-toggle.active span:nth-child(2) {
             opacity: 0;
         }
-        
+
         .menu-toggle.active span:nth-child(3) {
             transform: rotate(-45deg) translate(6px, -6px);
         }
-        
+
         .menu-overlay {
             display: none;
             position: fixed;
@@ -131,196 +132,228 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
+
         .menu-overlay.active {
             display: block;
             opacity: 1;
         }
 
-        .page-header {
-            background: linear-gradient(rgba(0,95,153,0.9), rgba(0,61,102,0.9)), url('images/kamyon.jpg') center/cover;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .page-header h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
+        /* 404 Content */
+        .error-section {
+            padding: 10px 20px 60px;
+            background: white;
+            min-height: calc(100vh - 200px);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .about-section {
-            padding: 80px 20px;
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .about-text h2 {
-            font-size: 32px;
-            color: #005f99;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #005f99, #003d66);
-            color: white;
-            padding: 40px 20px;
-            border-radius: 15px;
             text-align: center;
+        }
+
+        .error-404 {
+            font-size: 180px;
+            font-weight: 900;
+            color: #005f99;
+            margin: 0 0 20px 0;
+            line-height: 1;
+            text-shadow: 4px 4px 0px rgba(255, 152, 0, 0.3);
+            animation: fadeInError 0.8s ease-out;
+        }
+
+        @keyframes fadeInError {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .error-message {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .error-description {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 7px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+            animation: fadeIn 1.4s ease-out;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #005f99;
+            color: white;
             box-shadow: 0 5px 20px rgba(0,95,153,0.3);
         }
 
-        .stat-card i {
-            font-size: 40px;
-            margin-bottom: 15px;
-            color: #ffa500;
+        .btn-primary:hover {
+            background: #003d66;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,95,153,0.4);
         }
 
-        .stat-card h3 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .stat-card p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-        .values-section {
-            padding: 80px 20px;
-            background: #f0f7ff;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            color: #005f99;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+        .btn-secondary {
             background: #ff9800;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255,152,0,0.3);
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .btn-secondary:hover {
+            background: #e68900;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,152,0,0.4);
         }
 
-        .value-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+        /* Animation Container - Arka plan yok, sadece alan */
+        .animation-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            margin: 30px auto 0;
+            overflow: hidden;
         }
 
-        .value-card:hover {
-            transform: translateY(-10px);
+        /* Yol - site mavisi, sağdan sola hareket ediyor sonra duruyor */
+        .road {
+            position: absolute;
+            bottom: 120px;
+            left: -100%;
+            width: 300%;
+            height: 6px;
+            background: repeating-linear-gradient(
+                to right,
+                #005f99 0px,
+                #005f99 60px,
+                transparent 60px,
+                transparent 120px
+            );
+            animation: roadMove 4s linear forwards;
+            z-index: 1;
         }
 
-        .value-card i {
-            font-size: 50px;
+        @keyframes roadMove {
+            0% {
+                transform: translateX(33.33%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Kamyon - sol tarafta sabit, sonra duvara doğru hareket eder */
+        .truck {
+            position: absolute;
+            bottom: 126px;
+            left: 120px;
+            font-size: 70px;
             color: #005f99;
-            margin-bottom: 20px;
+            animation: truckMove 4s ease-out forwards;
+            z-index: 5;
         }
 
-        .value-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #333;
+        @keyframes truckMove {
+            0%, 50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(480px);
+            }
         }
 
-        .value-card p {
-            color: #666;
-            line-height: 1.6;
+        /* Duvar - ince dikey çizgi, yolun sonunda belirir */
+        .wall {
+            position: absolute;
+            bottom: 100px;
+            right: 80px;
+            width: 6px;
+            height: 100px;
+            background: #005f99;
+            opacity: 0;
+            animation: wallAppear 4s ease-out forwards;
+            z-index: 10;
         }
 
-        .team-section {
-            padding: 80px 20px;
-            background: white;
+        @keyframes wallAppear {
+            0%, 45% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        /* Çarpma efekti - çarpma emojisi */
+        .crash-effect {
+            position: absolute;
+            bottom: 130px;
+            right: 50px;
+            font-size: 60px;
+            opacity: 0;
+            animation: crashEmoji 4s ease-out forwards;
+            z-index: 15;
         }
 
-        .team-member {
-            text-align: center;
-            padding: 30px;
-            background: #f8f8f8;
-            border-radius: 15px;
-            transition: all 0.3s;
+        @keyframes crashEmoji {
+            0%, 99% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
-        .team-member:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
-        }
-
-        .team-member i {
-            font-size: 80px;
-            color: #005f99;
-            margin-bottom: 20px;
-        }
-
-        .team-member h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .team-member p {
-            color: #666;
-        }
-
+        /* Footer */
         footer {
             background: #222;
             color: white;
@@ -388,6 +421,7 @@
             color: #999;
         }
 
+        /* Floating Buttons */
         .floating-whatsapp {
             position: fixed;
             bottom: 20px;
@@ -465,7 +499,7 @@
                 align-items: stretch;
                 margin: 0;
             }
-            
+
             .nav-header {
                 display: block;
                 color: white;
@@ -477,7 +511,7 @@
                 text-transform: uppercase;
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             }
-            
+
             .nav-footer {
                 display: block;
                 padding: 20px;
@@ -485,13 +519,23 @@
                 margin-top: auto;
                 text-align: center;
             }
-            
+
             .nav-footer img {
-                max-width: 200px;
+                max-width: 180px;
                 width: 100%;
                 height: auto;
             }
-            
+
+            nav ul li {
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+
             nav ul li a.contact-btn {
                 margin: 15px 20px;
                 text-align: center;
@@ -503,38 +547,81 @@
                 max-width: 220px !important;
                 box-sizing: border-box !important;
             }
-            
-            nav ul li {
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-            
+
             nav ul li:has(a.contact-btn) {
                 text-align: center;
             }
-            
-            nav ul li a {
-                display: block;
-                padding: 15px 20px;
+
+            .error-404 {
+                font-size: 100px;
+            }
+
+            .error-message {
+                font-size: 28px;
+            }
+
+            .error-description {
                 font-size: 18px;
-            }
-            
-            nav ul li a.contact-btn {
-                margin: 20px 0;
-                text-align: center;
-                border-radius: 10px;
+                padding: 0 20px;
             }
 
-            .page-header h1 {
-                font-size: 28px;
+            .buttons {
+                flex-direction: column;
+                padding: 0 20px;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
-            .section-title {
-                font-size: 28px;
+            .animation-container {
+                max-width: 90%;
+                height: 200px;
+            }
+
+            .truck {
+                font-size: 50px;
+                bottom: 86px;
+                left: 40px;
+            }
+
+            @keyframes truckMove {
+                0%, 50% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(100vw - 200px));
+                }
+            }
+
+            .wall {
+                bottom: 70px;
+                right: 20px;
+                height: 70px;
+                width: 4px;
+            }
+
+            .road {
+                bottom: 80px;
+                height: 4px;
+            }
+
+            .crash-effect {
+                bottom: 90px;
+                right: 5px;
+                font-size: 40px;
+            }
+
+            @keyframes crashEmoji {
+                0%, 99% {
+                    opacity: 0;
+                    transform: scale(0.5);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
             }
 
             .floating-phone {
@@ -572,112 +659,26 @@
         </div>
     </header>
 
-    <div class="page-header">
-        <h1>Hakkımızda</h1>
-        <p>Güvenilir ve profesyonel nakliyat hizmetleri</p>
-    </div>
-
-    <section class="about-section">
+    <section class="error-section">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Irmak Nakliyat Kimdir?</h2>
-                    <p>Irmak Nakliyat olarak 2015 yılından bu yana Ankara merkezli olmak üzere Türkiye'nin her yerine güvenli ve hızlı nakliyat hizmetleri sunmaktayız.</p>
-                    <p>Evden eve nakliyat, ofis taşımacılığı, asansörlü nakliyat ve şehirlerarası taşımacılık konularında uzmanlaşmış ekibimizle müşteri memnuniyetini ön planda tutuyoruz.</p>
-                    <p>30 yılı aşkın tecrübemiz, profesyonel ekibimiz ve modern araç filomuzla eşyalarınızı güvenle taşıyor, taşınma sürecinizi kolaylaştırıyoruz.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/kamyon.jpg" alt="Irmak Nakliyat Araçları">
-                </div>
+            <h1 class="error-404">404</h1>
+            <p class="error-message">Aradığınız Sayfa Bulunamadı!</p>
+            <p class="error-description">Maalesef kamyonumuz yanlış yola girdi ve bir duvara çarptı.<br> Ana sayfaya dönebilir veya bizimle iletişime geçebilirsiniz.</p>
+
+            <div class="animation-container">
+                <div class="road"></div>
+                <i class="fas fa-truck truck"></i>
+                <div class="wall"></div>
+                <div class="crash-effect">💥</div>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>10+</h3>
-                    <p>Yıllık Tecrübe</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3>5000+</h3>
-                    <p>Mutlu Müşteri</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>15+</h3>
-                    <p>Araç Filosu</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-city"></i>
-                    <h3>81</h3>
-                    <p>İl Hizmet Ağı</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="values-section">
-        <div class="container">
-            <h2 class="section-title">Değerlerimiz</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Güvenilirlik</h3>
-                    <p>Eşyalarınız bizim için değerlidir. Tüm taşıma sürecinde maksimum güvenlik önlemleri alıyoruz.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Kalite</h3>
-                    <p>Profesyonel ekibimiz ve kaliteli malzemelerimizle en iyi hizmeti sunuyoruz.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Zamanında Teslimat</h3>
-                    <p>Belirlenen tarih ve saatte eksiksiz teslimat garantisi veriyoruz.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Müşteri Memnuniyeti</h3>
-                    <p>Müşterilerimizin memnuniyeti bizim için en önemli başarı kriteridir.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h3>Uygun Fiyat</h3>
-                    <p>Kaliteli hizmeti en uygun fiyatlarla sunarak bütçenize uygun çözümler üretiyoruz.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Sigorta Güvencesi</h3>
-                    <p>Tüm taşımalarımız sigorta kapsamında gerçekleştirilir.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="team-section">
-        <div class="container">
-            <h2 class="section-title">Ekibimiz</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <i class="fas fa-user-tie"></i>
-                    <h4>Yönetim Ekibi</h4>
-                    <p>Deneyimli yöneticilerimiz tüm süreçleri koordine eder</p>
-                </div>
-                <div class="team-member">
-                    <i class="fas fa-users-cog"></i>
-                    <h4>Operasyon Ekibi</h4>
-                    <p>Profesyonel taşıma uzmanlarımız sahada hizmetinizdedir</p>
-                </div>
-                <div class="team-member">
-                    <i class="fas fa-headset"></i>
-                    <h4>Müşteri Hizmetleri</h4>
-                    <p>7/24 müşteri destek ekibimiz her zaman yanınızda</p>
-                </div>
-                <div class="team-member">
-                    <i class="fas fa-truck-loading"></i>
-                    <h4>Lojistik Ekibi</h4>
-                    <p>Uzman lojistik ekibimiz en verimli rotaları planlar</p>
-                </div>
+            <div class="buttons">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ana Sayfaya Dön
+                </a>
+                <a href="iletisim.html" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> İletişim
+                </a>
             </div>
         </div>
     </section>
@@ -738,43 +739,13 @@
             overlay.classList.toggle('active');
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         }
-    </script>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "AboutPage",
-                "@id": "https://irmaknakliyat.com/hakkimizda#webpage",
-                "url": "https://irmaknakliyat.com/hakkimizda",
-                "name": "Hakkımızda - Irmak Nakliyat",
-                "description": "30 yılı aşkın tecrübe ile Ankara ve Eryaman'da profesyonel nakliyat hizmetleri. 5000+ mutlu müşteri, güvenilir ekip.",
-                "inLanguage": "tr",
-                "isPartOf": {
-                    "@id": "https://irmaknakliyat.com/#website"
-                }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "@id": "https://irmaknakliyat.com/hakkimizda#breadcrumb",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Anasayfa",
-                        "item": "https://irmaknakliyat.com/"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "Hakkımızda",
-                        "item": "https://irmaknakliyat.com/hakkimizda"
-                    }
-                ]
+        // Çarpma anında titreşim
+        setTimeout(() => {
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
             }
-        ]
-    }
+        }, 4000);
     </script>
 </body>
 </html>
