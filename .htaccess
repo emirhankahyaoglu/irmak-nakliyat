@@ -4,6 +4,10 @@ RewriteEngine On
 # Custom 404 Error Page
 ErrorDocument 404 /404.html
 
+# Redirect index.html to root
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

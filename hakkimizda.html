@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Irmak Nakliyat Hakkında - 30 yılı aşkın tecrübe, 5000+ mutlu müşteri, Ankara ve Eryaman'da profesyonel nakliyat hizmetleri. Güvenilir ve kaliteli taşımacılık.">
-    <meta name="keywords" content="ırmak nakliyat hakkında, ankara nakliye şirketi, eryaman nakliyat firması, güvenilir nakliyat, profesyonel taşımacılık ankara">
+    <meta name="keywords" content="ırmak nakliyat hakkında, ırmak taşımacılık, eryaman nakliye, eryaman nakliyat firması, ankara nakliye şirketi, ankara nakliyat, ankara taşımacılık, güvenilir nakliyat, profesyonel taşımacılık ankara">
     <link rel="icon" type="image/png" href="images/logoicon.png">
     <title>Hakkımızda - Irmak Nakliyat | 30 Yıllık Tecrübe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -594,22 +594,22 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <i class="fas fa-calendar-check"></i>
-                    <h3>10+</h3>
+                    <h3><span class="counter" data-target="30">0</span>+</h3>
                     <p>Yıllık Tecrübe</p>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
-                    <h3>5000+</h3>
+                    <h3><span class="counter" data-target="5000">0</span>+</h3>
                     <p>Mutlu Müşteri</p>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-truck"></i>
-                    <h3>15+</h3>
+                    <h3><span class="counter" data-target="15">0</span>+</h3>
                     <p>Araç Filosu</p>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-city"></i>
-                    <h3>81</h3>
+                    <h3><span class="counter" data-target="81">0</span></h3>
                     <p>İl Hizmet Ağı</p>
                 </div>
             </div>
@@ -738,6 +738,50 @@
             overlay.classList.toggle('active');
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         }
+
+        // Sayaç animasyonu - ekrana geldiğinde başlar
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 saniye
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Intersection Observer - sayılar ekrana geldiğinde tetiklenir
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => animateCounter(counter));
+                }
+            });
+        }, observerOptions);
+
+        // Stats grid'i gözlemle
+        window.addEventListener('load', () => {
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                observer.observe(statsGrid);
+            }
+        });
     </script>
 
     <script type="application/ld+json">
