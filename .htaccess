@@ -1,22 +1,19 @@
 # Enable URL rewriting
 RewriteEngine On
+RewriteBase /
 
 # Custom 404 Error Page
 ErrorDocument 404 /404.html
 
-# Redirect index.html to root
-RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^index\.html$ / [R=301,L]
+# Redirect .html URLs to clean URLs (301 permanent redirect)
+RewriteCond %{REQUEST_URI} \.html$
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
 
-# Redirect from .html to clean URL (must come before adding .html)
-RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
-RewriteRule ^(.+)\.html$ /$1 [R=301,L]
-
-# Add .html extension internally (only if file doesn't exist)
+# Internally add .html extension if file exists
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^\.]+)$ $1.html [L]
+RewriteRule ^(.*)$ $1.html [L]
 
 # Set index.html as default
 DirectoryIndex index.html
